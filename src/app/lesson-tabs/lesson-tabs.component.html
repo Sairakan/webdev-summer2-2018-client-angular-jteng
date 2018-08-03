@@ -1,0 +1,10 @@
+<div class="row bg-secondary">
+  <ul class="nav nav-tabs">
+    <li (click)="selectLesson(lesson)" [ngClass]="{'active': lesson.id == lId}" *ngFor="let lesson of lessons">
+      <a routerLink="/course/{{cId}}/module/{{m.id}}/lesson/{{lesson.id}}" class="">
+        {{lesson.title}}</a>
+    </li>
+  </ul>
+</div>
+
+<!-- <app-widget-list></app-widget-list> -->

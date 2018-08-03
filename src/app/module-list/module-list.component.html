@@ -1,0 +1,19 @@
+<div id="moduleContainer" class="row">
+  <div class="col-4 bg-dark pl-4">
+    <div class="row bg-secondary py-1">
+      <a routerLink='/home' class="mx-2">
+        <i class="fas fa-2x fa-times text-white-50"></i>
+      </a>
+      <span class="h3 text-white">{{course.title}}</span>
+    </div>
+    <ul class="nav nav-pills flex-column pt-2">
+      <li (click)="selectModule(module)" [ngClass]="{'active': module.id == moduleId}" *ngFor="let module of modules">
+        <a routerLink="/course/{{courseId}}/module/{{module.id}}" class="nav-link wbdv bg-secondary my-1 text-white">
+          {{module.title}}</a>
+      </li>
+    </ul>
+  </div>
+  <div class="col-8">
+    <app-lesson-tabs></app-lesson-tabs>
+  </div>
+</div>
