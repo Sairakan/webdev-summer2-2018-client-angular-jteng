@@ -1,0 +1,7 @@
+ol {
+    list-style: decimal inside !important;
+}
+
+ol li {
+    display: list-item !important;
+}

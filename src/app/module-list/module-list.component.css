@@ -10,3 +10,7 @@
 .col-4 {
   height: 100%;
 }
+
+#headerRow {
+  height: 3em;
+}

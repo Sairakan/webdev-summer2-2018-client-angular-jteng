@@ -1,10 +1,10 @@
-<div class="row bg-secondary">
-  <ul class="nav nav-tabs">
-    <li (click)="selectLesson(lesson)" [ngClass]="{'active': lesson.id == lId}" *ngFor="let lesson of lessons">
-      <a routerLink="/course/{{cId}}/module/{{m.id}}/lesson/{{lesson.id}}" class="">
+<div id="headerRow" class="row bg-secondary">
+  <ul class="nav nav-pills">
+    <li *ngFor="let lesson of lessons" (click)="selectLesson(lesson)" [ngClass]="{'active': lesson.id == lId}">
+      <a routerLink="/course/{{cId}}/module/{{mId}}/lesson/{{lesson.id}}" class="h5 nav-link wbdv bg-secondary my-1 text-white-50">
         {{lesson.title}}</a>
     </li>
   </ul>
 </div>
 
-<!-- <app-widget-list></app-widget-list> -->
+<app-topic-pills></app-topic-pills>

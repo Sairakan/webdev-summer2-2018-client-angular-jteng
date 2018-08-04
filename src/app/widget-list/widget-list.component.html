@@ -1,0 +1,43 @@
+<div class="container">
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let widget of widgets">
+      <div [ngSwitch]="widget.type">
+        <div *ngSwitchCase="'HEADING'">
+          <div [ngSwitch]="widget.size">
+            <h1 *ngSwitchCase=1>{{widget.text}}</h1>
+            <h2 *ngSwitchCase=2>{{widget.text}}</h2>
+            <h3 *ngSwitchCase=3>{{widget.text}}</h3>
+            <h4 *ngSwitchCase=4>{{widget.text}}</h4>
+          </div>
+        </div>
+        <div *ngSwitchCase="'PARAGRAPH'">
+          <p>{{widget.text}}</p>
+        </div>
+        <div *ngSwitchCase="'LIST'">
+          <div [ngSwitch]="widget.listType">
+            <div *ngSwitchCase="'ORDERED'">
+              <ol class="list-group">
+                <li class="list-group-item" *ngFor="let item of widget.text.split('\n')">
+                  {{item}}
+                </li>
+              </ol>
+            </div>
+            <div *ngSwitchCase="'UNORDERED'">
+              <ul class="list-group">
+                <li class="list-group-item" *ngFor="let item of widget.text.split('\n')">
+                  {{item}}
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div *ngSwitchCase="'LINK'">
+            <a href={{widget.href}}>{{widget.text}}</a>
+        </div>
+        <div *ngSwitchCase="'IMAGE'">
+            <img src={{widget.src}} alt="the URL" />
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>

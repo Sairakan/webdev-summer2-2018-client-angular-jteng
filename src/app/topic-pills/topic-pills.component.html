@@ -1,0 +1,10 @@
+<div class="row">
+  <ul class="nav nav-pills">
+    <li *ngFor="let topic of topics" (click)="selectTopic(topic)" [ngClass]="{'active': topic.id == tId}">
+      <a routerLink="/course/{{cId}}/module/{{mId}}/lesson/{{lId}}/topic/{{topic.id}}" class="h5 nav-link wbdv bg-secondary m-1 text-white">
+        {{topic.title}}</a>
+    </li>
+  </ul>
+</div>
+
+<app-widget-list></app-widget-list>

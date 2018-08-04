@@ -33,7 +33,9 @@ export class LessonTabsComponent implements OnInit {
     this.mId = mId;
     if (mId)
       this.service.findLessonsForModule(cId, mId)
-        .then(lessons => this.lessons = lessons);
+        .then(lessons => {
+          this.lessons = lessons;
+        });
   }
 
   selectLesson = (lesson) => {
