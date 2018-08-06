@@ -21,6 +21,12 @@ import { TopicPillsComponent } from './topic-pills/topic-pills.component';
 import { TopicServiceClient } from './services/topic.service.client';
 import { WidgetListComponent } from './widget-list/widget-list.component';
 import { WidgetServiceClient } from './services/widget.service.client';
+import { LoginComponent } from './login/login.component';
+import { UserServiceClient } from './services/user.service.client';
+import { ProfileComponent } from './profile/profile.component';
+import { SectionServiceClient } from './services/section.service.client';
+import { RegisterComponent } from './register/register.component';
+import { SectionListComponent } from './section-list/section-list.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +38,11 @@ import { WidgetServiceClient } from './services/widget.service.client';
     ModuleListComponent,
     LessonTabsComponent,
     TopicPillsComponent,
-    WidgetListComponent
+    WidgetListComponent,
+    LoginComponent,
+    ProfileComponent,
+    RegisterComponent,
+    SectionListComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +55,9 @@ import { WidgetServiceClient } from './services/widget.service.client';
     ModuleServiceClient,
     LessonServiceClient,
     TopicServiceClient,
-    WidgetServiceClient
+    WidgetServiceClient,
+    UserServiceClient,
+    SectionServiceClient
   ],
   bootstrap: [AppComponent]
 })
