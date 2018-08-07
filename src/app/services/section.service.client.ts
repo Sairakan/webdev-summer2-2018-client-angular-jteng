@@ -20,7 +20,7 @@ export class SectionServiceClient {
     return fetch(url, {
       method: 'post',
       credentials: 'include'
-    });
+    }).then(response => response.text());
   }
 
   unenrollStudentFromSection(enrollment) {

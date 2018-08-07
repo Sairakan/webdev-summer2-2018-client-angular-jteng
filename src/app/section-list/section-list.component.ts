@@ -54,8 +54,14 @@ export class SectionListComponent implements OnInit {
   enroll(section) {
     if (this.user) {
       this.sectionService.enrollStudentInSection(this.user._id, section._id)
-        .then(() => {
-          this.router.navigate(['profile']);
+        .then(response => {
+          if (!response)
+            alert('section is full');
+          else if (response == 'already enrolled')
+            alert('already enrolled in section');
+          else {
+            this.router.navigate(['profile']);
+          }
         });
     } else {
       alert('please log in');
