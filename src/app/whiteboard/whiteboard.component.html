@@ -5,7 +5,8 @@
 
     <a routerLink="/profile" *ngIf="user">Profile</a>
     <a routerLink="/login" *ngIf="!user">Login</a><span *ngIf="!user"> | </span>
-    <a routerLink="/register" *ngIf="!user">Register</a>
+    <a routerLink="/register" *ngIf="!user">Register</a> | 
+    <a routerLink="/admin">Admin</a>
 
     <app-course-grid></app-course-grid>
 </div>

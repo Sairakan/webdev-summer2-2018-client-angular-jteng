@@ -1,0 +1,25 @@
+<div class="container">
+  <h1>Admin</h1>
+
+  <a routerLink="/home">Home</a> |
+  <a routerLink="/profile">Profile</a>
+
+  <ul class="list-group mt-2">
+    <li *ngFor="let course of courses" (click)="selectCourse(course)" class="list-group-item" [ngClass]="{'bg-primary': course == selectedCourse,
+                  'text-white': course == selectedCourse}">
+      {{course.title}}
+      <ul *ngIf="course == selectedCourse" class="list-group mt-2">
+        <input [(ngModel)]="sectionName" placeholder="Section Name" class="form-control">
+        <input [(ngModel)]="seats" placeholder="Seats available" class="form-control">
+        <button (click)="createSection(sectionName, seats)" class="btn btn-success btn-block">
+          Add Section
+        </button>
+        <li *ngFor="let section of sections" class="list-group-item text-dark">
+          {{section.name}} ({{section.seats}})
+          <button (click)="deleteSection(section)" class="float-right btn btn-danger">Delete</button>
+          <button (click)="edit(section)" class="float-right btn btn-primary mr-2">Edit</button>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>

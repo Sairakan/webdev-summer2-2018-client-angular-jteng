@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from "@angular/router";
-import { SectionServiceClient } from "../services/section.service.client";
+import { ActivatedRoute, Router } from '@angular/router';
+import { SectionServiceClient } from '../services/section.service.client';
 import { CourseServiceClient } from '../services/course.service.client';
 import { UserServiceClient } from '../services/user.service.client';
 
@@ -16,12 +16,12 @@ export class SectionListComponent implements OnInit {
     private courseService: CourseServiceClient,
     private router: Router,
     private route: ActivatedRoute) {
-    this.route.params.subscribe(params => this.loadSections(params['courseId']))
+    this.route.params.subscribe(params => this.loadSections(params['courseId']));
   }
 
   user = {
     _id: ''
-  }
+  };
   sectionName = '';
   seats = '';
   courseId = '';
@@ -34,10 +34,12 @@ export class SectionListComponent implements OnInit {
   }
 
   createSection(sectionName, seats) {
-    if (sectionName == '')
+    if (sectionName === '') {
       sectionName = this.courseName + ' ' + 'Section ' + (this.sections.length + 1);
-    if (seats == 0)
+    }
+    if (seats === '') {
       seats = 20;
+    }
     this.sectionService.createSection(this.courseId, sectionName, seats)
       .then(() => {
         this.loadSections(this.courseId);
@@ -55,11 +57,11 @@ export class SectionListComponent implements OnInit {
     if (this.user) {
       this.sectionService.enrollStudentInSection(this.user._id, section._id)
         .then(response => {
-          if (!response)
+          if (!response) {
             alert('section is full');
-          else if (response == 'already enrolled')
+          } else if (response === 'already enrolled') {
             alert('already enrolled in section');
-          else {
+          } else {
             this.router.navigate(['profile']);
           }
         });
