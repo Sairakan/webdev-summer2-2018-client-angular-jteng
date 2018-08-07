@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {UserServiceClient} from "../services/user.service.client";
-import {Router} from "@angular/router";
-import {SectionServiceClient} from "../services/section.service.client";
+import { UserServiceClient } from "../services/user.service.client";
+import { Router } from "@angular/router";
+import { SectionServiceClient } from "../services/section.service.client";
 
 @Component({
   selector: 'app-profile',
@@ -11,10 +11,11 @@ import {SectionServiceClient} from "../services/section.service.client";
 export class ProfileComponent implements OnInit {
 
   constructor(private userService: UserServiceClient,
-              private sectionService: SectionServiceClient,
-              private router: Router) { }
+    private sectionService: SectionServiceClient,
+    private router: Router) { }
 
   user = {
+    _id: '',
     username: '',
     firstName: '',
     lastName: '',
@@ -25,6 +26,12 @@ export class ProfileComponent implements OnInit {
   lastName;
   email;
   sections = [];
+
+  populateSections() {
+    this.sectionService
+      .findSectionsForStudent(this.user._id)
+      .then(sections => this.sections = sections);
+  }
 
   update() {
     this.user.username = this.username;
@@ -37,26 +44,34 @@ export class ProfileComponent implements OnInit {
 
   logout() {
     this.userService
-      .logout()
-      .then(() =>
-        this.router.navigate(['login']));
+      .logout();
 
+  }
+
+  unenroll(enrollment) {
+    this.sectionService.unenrollStudentFromSection(enrollment)
+      .then(() => {
+        this.populateSections();
+      });
   }
 
   ngOnInit() {
     this.userService
       .profile()
       .then(user => {
-        this.user = user;
-        this.username = user.username;
-        this.firstName = user.firstName;
-        this.lastName = user.lastName;
-        this.email = user.email;
-      });
+        if (user) {
+          this.user = user;
+          this.username = user.username;
+          this.firstName = user.firstName;
+          this.lastName = user.lastName;
+          this.email = user.email;
 
-    this.sectionService
-      .findSectionsForStudent()
-      .then(sections => this.sections = sections );
+          this.populateSections();
+        } else {
+          alert('Please log in');
+          this.router.navigate(['home']);
+        }
+      });
   }
 
 }

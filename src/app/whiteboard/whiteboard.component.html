@@ -3,9 +3,9 @@
         Whiteboard
     </h1>
 
-    <a routerLink="/profile">Profile</a> |
-    <a routerLink="/login">Login</a> |
-    <a routerLink="/register">Register</a>
+    <a routerLink="/profile" *ngIf="user">Profile</a>
+    <a routerLink="/login" *ngIf="!user">Login</a><span *ngIf="!user"> | </span>
+    <a routerLink="/register" *ngIf="!user">Register</a>
 
     <app-course-grid></app-course-grid>
 </div>

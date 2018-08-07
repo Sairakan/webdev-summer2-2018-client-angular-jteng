@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserServiceClient } from '../services/user.service.client';
 
 @Component({
   selector: 'app-whiteboard',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WhiteboardComponent implements OnInit {
 
-  constructor() { }
+  constructor(private userService: UserServiceClient) { }
+
+  user = null;
 
   ngOnInit() {
+    this.userService
+      .profile()
+      .then(user => {
+        this.user = user;
+      });
   }
 
 }

@@ -1,12 +1,17 @@
+import { Injectable } from "../../../node_modules/@angular/core";
+
+import { NODE } from './const-url'
+
+@Injectable()
 export class UserServiceClient {
 
   findUserById(userId) {
-    return fetch('http://localhost:4000/api/user/' + userId)
+    return fetch(NODE + '/api/user/' + userId)
       .then(response => response.json());
   }
 
   findUserByUsername(username) {
-    return fetch('http://localhost:4000/api/register/'+username)
+    return fetch(NODE + '/api/register/' + username)
       .then(response => response.text())
       .then(text => {
         if (text == '') return null;
@@ -19,7 +24,7 @@ export class UserServiceClient {
       username: username,
       password: password
     };
-    return fetch('http://localhost:4000/api/login', {
+    return fetch(NODE + '/api/login', {
       method: 'post',
       credentials: 'include',
       headers: {
@@ -31,15 +36,14 @@ export class UserServiceClient {
   }
 
   logout() {
-    return fetch('http://localhost:4000/api/logout', {
+    return fetch(NODE + '/api/logout', {
       method: 'post',
       credentials: 'include'
-    })
-      .then(response => response.json());
+    });
   }
 
   update(user) {
-    return fetch('http://localhost:4000/api/user', {
+    return fetch(NODE + '/api/profile', {
       method: 'put',
       credentials: 'include',
       headers: {
@@ -51,11 +55,12 @@ export class UserServiceClient {
   }
 
   profile() {
-    return fetch('http://localhost:4000/api/profile',
+    return fetch(NODE + '/api/profile',
       {
         credentials: 'include', // include, same-origin, *omit
       })
-      .then(response => response.json());
+      .then(response => response.text())
+      .then(text => (text ? JSON.parse(text) : null));
   }
 
   register(username, password) {
@@ -63,7 +68,7 @@ export class UserServiceClient {
       username: username,
       password: password
     };
-    return fetch('http://localhost:4000/api/register', {
+    return fetch(NODE + '/api/register', {
       method: 'post',
       credentials: 'include',
       headers: {

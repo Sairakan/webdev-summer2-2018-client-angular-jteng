@@ -1,6 +1,11 @@
+import { Injectable } from "../../../node_modules/@angular/core";
+
+import { HOST } from './const-url';
+
+@Injectable()
 export class WidgetServiceClient {
   findWidgetsForLesson(tId) {
-    return fetch('http://localhost:8080/api/topic/' + tId + '/widget')
+    return fetch(HOST + '/api/topic/' + tId + '/widget')
       .then(response => response.json());
   }
 }

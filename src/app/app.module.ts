@@ -7,10 +7,8 @@ import {routing} from './app.routing';
 import { AppComponent } from './app.component';
 import { WhiteboardComponent } from './whiteboard/whiteboard.component';
 
-import { CourseNavigatorComponent } from './course-navigator/course-navigator.component';
 import { CourseGridComponent } from './course-grid/course-grid.component';
 
-import { CourseNavigatorServiceClient } from './services/CourseNavigatorServiceClient';
 import { CourseServiceClient } from './services/course.service.client';
 import { CourseViewerComponent } from './course-viewer/course-viewer.component';
 import { ModuleListComponent } from './module-list/module-list.component';
@@ -32,7 +30,6 @@ import { SectionListComponent } from './section-list/section-list.component';
   declarations: [
     AppComponent,
     WhiteboardComponent,
-    CourseNavigatorComponent,
     CourseGridComponent,
     CourseViewerComponent,
     ModuleListComponent,
@@ -50,7 +47,6 @@ import { SectionListComponent } from './section-list/section-list.component';
     routing
   ],
   providers: [
-    CourseNavigatorServiceClient,
     CourseServiceClient,
     ModuleServiceClient,
     LessonServiceClient,

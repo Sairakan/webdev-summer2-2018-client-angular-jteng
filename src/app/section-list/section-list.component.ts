@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
-import {SectionServiceClient} from "../services/section.service.client";
+import { ActivatedRoute, Router } from "@angular/router";
+import { SectionServiceClient } from "../services/section.service.client";
+import { CourseServiceClient } from '../services/course.service.client';
+import { UserServiceClient } from '../services/user.service.client';
 
 @Component({
   selector: 'app-section-list',
@@ -9,43 +11,66 @@ import {SectionServiceClient} from "../services/section.service.client";
 })
 export class SectionListComponent implements OnInit {
 
-  constructor(private service: SectionServiceClient,
-              private router: Router,
-              private route: ActivatedRoute) {
+  constructor(private userService: UserServiceClient,
+    private sectionService: SectionServiceClient,
+    private courseService: CourseServiceClient,
+    private router: Router,
+    private route: ActivatedRoute) {
     this.route.params.subscribe(params => this.loadSections(params['courseId']))
   }
 
+  user = {
+    _id: ''
+  }
   sectionName = '';
   seats = '';
   courseId = '';
+  courseName = '';
   sections = [];
   loadSections(courseId) {
     this.courseId = courseId;
-    this
-      .service
-      .findSectionsForCourse(courseId)
+    this.sectionService.findSectionsForCourse(courseId)
       .then(sections => this.sections = sections);
   }
 
   createSection(sectionName, seats) {
-    this
-      .service
-      .createSection(this.courseId, sectionName, seats)
+    if (sectionName == '')
+      sectionName = this.courseName + ' ' + 'Section ' + (this.sections.length + 1);
+    if (seats == 0)
+      seats = 20;
+    this.sectionService.createSection(this.courseId, sectionName, seats)
+      .then(() => {
+        this.loadSections(this.courseId);
+      });
+  }
+
+  deleteSection(section) {
+    this.sectionService.deleteSection(section._id)
       .then(() => {
         this.loadSections(this.courseId);
       });
   }
 
   enroll(section) {
-    // alert(section._id);
-    this.service
-      .enrollStudentInSection(section._id)
-      .then(() => {
-        this.router.navigate(['profile']);
-      });
+    if (this.user) {
+      this.sectionService.enrollStudentInSection(this.user._id, section._id)
+        .then(() => {
+          this.router.navigate(['profile']);
+        });
+    } else {
+      alert('please log in');
+      this.router.navigate(['login']);
+    }
   }
 
   ngOnInit() {
+    this.userService.profile().then(user => {
+      this.user = user;
+    });
+    this.courseService.findCourseById(this.courseId)
+      .then(course => {
+        this.courseName = course.title;
+      });
   }
 
 }

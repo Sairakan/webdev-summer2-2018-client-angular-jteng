@@ -1,21 +1,35 @@
+import { Injectable } from "../../../node_modules/@angular/core";
+
+import { NODE } from './const-url';
+
+@Injectable()
 export class SectionServiceClient {
 
-  SECTION_URL = 'http://localhost:4000/api/course/COURSEID/section';
+  SECTION_URL = NODE + '/api/course/COURSEID/section';
 
-  findSectionsForStudent() {
-    const url = 'http://localhost:4000/api/student/section';
+  findSectionsForStudent(studentId) {
+    const url = NODE + '/api/student/' + studentId + '/section';
     return fetch(url, {
       credentials: 'include'
     })
       .then(response => response.json());
   }
 
-  enrollStudentInSection(sectionId) {
-    const url = 'http://localhost:4000/api/section/' + sectionId + '/enrollment';
+  enrollStudentInSection(userId, sectionId) {
+    const url = NODE + '/api/student/' + userId + '/section/' + sectionId;
     return fetch(url, {
       method: 'post',
       credentials: 'include'
     });
+  }
+
+  unenrollStudentFromSection(enrollment) {
+    const studentId = enrollment.student;
+    const sectionId = enrollment.section._id;
+    return fetch(NODE + '/api/student/' + studentId + '/section/' + sectionId, {
+      method: 'delete',
+      credentials: 'include'
+    })
   }
 
   findSectionsForCourse(courseId) {
@@ -24,7 +38,7 @@ export class SectionServiceClient {
   }
 
   createSection(courseId, name, seats) {
-    const section = {courseId, name, seats};
+    const section = { courseId, name, seats };
     return fetch(this.SECTION_URL.replace('COURSEID', courseId), {
       method: 'post',
       body: JSON.stringify(section),
@@ -32,6 +46,12 @@ export class SectionServiceClient {
       headers: {
         'content-type': 'application/json'
       }
+    });
+  }
+
+  deleteSection(sectionId) {
+    return fetch(NODE + '/api/section/' + sectionId, {
+      method: 'delete'
     });
   }
 }
