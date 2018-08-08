@@ -38,10 +38,30 @@ export class AdminPageComponent implements OnInit {
     }
     if (seats === '') {
       seats = 20;
+    } else {
+      seats = parseInt(seats, 10);
     }
     this.sectionService.createSection(this.selectedCourse.id, sectionName, seats)
       .then(() => {
         this.selectCourse(this.selectedCourse);
+      });
+  }
+
+  update(section) {
+    section.maxSeats = parseInt(section.maxSeats, 10);
+    let oldSection;
+    this.sectionService.findSectionById(section._id)
+      .then(s => {
+        oldSection = s;
+        if (oldSection.maxSeats - oldSection.seats > section.maxSeats) {
+          alert('cannot reduce maxSeats below current enrollment');
+        } else {
+          section.seats += section.maxSeats - oldSection.maxSeats;
+          this.sectionService.updateSection(section)
+            .then(() => {
+              this.selectCourse(this.selectedCourse);
+            });
+        }
       });
   }
 

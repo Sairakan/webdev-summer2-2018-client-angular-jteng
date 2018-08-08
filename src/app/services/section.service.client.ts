@@ -1,4 +1,4 @@
-import { Injectable } from "../../../node_modules/@angular/core";
+import { Injectable } from '@angular/core';
 
 import { NODE } from './const-url';
 
@@ -6,6 +6,11 @@ import { NODE } from './const-url';
 export class SectionServiceClient {
 
   SECTION_URL = NODE + '/api/course/COURSEID/section';
+
+  findSectionById(sectionId) {
+    return fetch(NODE + '/api/section/' + sectionId)
+      .then(response => response.json());
+  }
 
   findSectionsForStudent(studentId) {
     const url = NODE + '/api/student/' + studentId + '/section';
@@ -29,7 +34,7 @@ export class SectionServiceClient {
     return fetch(NODE + '/api/student/' + studentId + '/section/' + sectionId, {
       method: 'delete',
       credentials: 'include'
-    })
+    });
   }
 
   findSectionsForCourse(courseId) {
@@ -38,7 +43,7 @@ export class SectionServiceClient {
   }
 
   createSection(courseId, name, seats) {
-    const section = { courseId, name, seats };
+    const section = { courseId, name, seats, maxSeats: seats };
     return fetch(this.SECTION_URL.replace('COURSEID', courseId), {
       method: 'post',
       body: JSON.stringify(section),
@@ -52,6 +57,16 @@ export class SectionServiceClient {
   deleteSection(sectionId) {
     return fetch(NODE + '/api/section/' + sectionId, {
       method: 'delete'
+    });
+  }
+
+  updateSection(section) {
+    return fetch(NODE + '/api/section/' + section._id, {
+      method: 'put',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(section)
     });
   }
 }
