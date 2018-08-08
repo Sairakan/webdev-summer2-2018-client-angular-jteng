@@ -4,9 +4,11 @@
     </h1>
 
     <a routerLink="/profile" *ngIf="user">Profile</a>
-    <a routerLink="/login" *ngIf="!user">Login</a><span *ngIf="!user"> | </span>
-    <a routerLink="/register" *ngIf="!user">Register</a> | 
-    <a routerLink="/admin">Admin</a>
+    <a routerLink="/login" *ngIf="!user">Login</a>
+    <span *ngIf="!user"> | </span>
+    <a routerLink="/register" *ngIf="!user">Register</a>
+    <span *ngIf="user && user.admin"> | </span>
+    <a routerLink="/admin" *ngIf="user && user.admin">Admin</a>
 
     <app-course-grid></app-course-grid>
 </div>

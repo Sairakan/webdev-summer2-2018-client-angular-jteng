@@ -1,6 +1,6 @@
-import { Injectable } from "../../../node_modules/@angular/core";
+import { Injectable } from '@angular/core';
 
-import { NODE } from './const-url'
+import { NODE } from './const-url';
 
 @Injectable()
 export class UserServiceClient {
@@ -13,10 +13,7 @@ export class UserServiceClient {
   findUserByUsername(username) {
     return fetch(NODE + '/api/register/' + username)
       .then(response => response.text())
-      .then(text => {
-        if (text == '') return null;
-        else return JSON.parse(text);
-      });
+      .then(text => (text ? JSON.parse(text) : null));
   }
 
   login(username, password) {

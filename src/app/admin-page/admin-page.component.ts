@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CourseServiceClient } from '../services/course.service.client';
 import { Course } from '../models/course.model.client';
 import { SectionServiceClient } from '../services/section.service.client';
+import { UserServiceClient } from '../services/user.service.client';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-page',
@@ -10,8 +12,10 @@ import { SectionServiceClient } from '../services/section.service.client';
 })
 export class AdminPageComponent implements OnInit {
 
-  constructor(private courseService: CourseServiceClient,
-    private sectionService: SectionServiceClient) { }
+  constructor(private userService: UserServiceClient,
+    private courseService: CourseServiceClient,
+    private sectionService: SectionServiceClient,
+    private router: Router) { }
 
   courses: Course[] = [];
   selectedCourse: Course;
@@ -49,8 +53,16 @@ export class AdminPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.courseService.findAllCourses()
-      .then(courses => this.courses = courses);
+    this.userService.profile()
+      .then(user => {
+        if (!user || !user.admin) {
+          alert('please log in as an administrator');
+          this.router.navigate(['home']);
+        } else {
+          this.courseService.findAllCourses()
+            .then(courses => this.courses = courses);
+        }
+      });
   }
 
 }
