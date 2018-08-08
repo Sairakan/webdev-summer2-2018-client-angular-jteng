@@ -21,7 +21,7 @@ export class ModuleListComponent implements OnInit {
   courseId;
   moduleId;
   selectedModule = {};
-  modules = [];
+  modules = [{title: ''}];
 
   setParams(params) {
     this.courseId = params['courseId'];
