@@ -1,0 +1,17 @@
+<div class="container-fluid">
+  <a routerLink='/home' class="mx-2">
+    <i class="fas fa-2x fa-times"></i>
+  </a>
+  <h1>Quizzes</h1>
+
+  <ul class="list-group">
+    <li *ngFor="let quiz of quizzes"
+        class="list-group-item">
+      {{quiz.title}}
+      <a class="float-right btn btn-primary"
+         routerLink="/quiz/{{quiz._id}}">
+        Take
+      </a>
+    </li>
+  </ul>
+</div>

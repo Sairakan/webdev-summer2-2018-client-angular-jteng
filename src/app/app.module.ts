@@ -26,6 +26,13 @@ import { SectionServiceClient } from './services/section.service.client';
 import { RegisterComponent } from './register/register.component';
 import { SectionListComponent } from './section-list/section-list.component';
 import { AdminPageComponent } from './admin-page/admin-page.component';
+import { QuizListComponent } from './quiz-list/quiz-list.component';
+import { QuizTakerComponent } from './quiz-taker/quiz-taker.component';
+import { QuizServiceClient } from './services/quiz.service.client';
+import { EssayQuestionComponent } from './essay-question/essay-question.component';
+import { FillBlanksQuestionComponent } from './fill-blanks-question/fill-blanks-question.component';
+import { TrueFalseQuestionComponent } from './true-false-question/true-false-question.component';
+import { MultipleChoiceQuestionComponent } from './multiple-choice-question/multiple-choice-question.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +48,13 @@ import { AdminPageComponent } from './admin-page/admin-page.component';
     ProfileComponent,
     RegisterComponent,
     SectionListComponent,
-    AdminPageComponent
+    AdminPageComponent,
+    QuizListComponent,
+    QuizTakerComponent,
+    EssayQuestionComponent,
+    FillBlanksQuestionComponent,
+    TrueFalseQuestionComponent,
+    MultipleChoiceQuestionComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +68,8 @@ import { AdminPageComponent } from './admin-page/admin-page.component';
     TopicServiceClient,
     WidgetServiceClient,
     UserServiceClient,
-    SectionServiceClient
+    SectionServiceClient,
+    QuizServiceClient
   ],
   bootstrap: [AppComponent]
 })

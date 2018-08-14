@@ -1,0 +1,11 @@
+<p [innerHTML]="this.format(question.description)">
+</p>
+
+<div *ngFor="let blank of question.blanks; let i = index">
+  <div>
+    <label>
+      Blank {{i}}:
+      <input [(ngModel)]="question.fillBlanksAnswers[i]" style="border-color:black">
+    </label>
+  </div>
+</div>

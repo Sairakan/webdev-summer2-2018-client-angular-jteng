@@ -3,6 +3,8 @@
         Whiteboard
     </h1>
 
+    <a routerLink="/quizzes">Quizzes</a>
+    <span> | </span>
     <a routerLink="/profile" *ngIf="user">Profile</a>
     <a routerLink="/login" *ngIf="!user">Login</a>
     <span *ngIf="!user"> | </span>
