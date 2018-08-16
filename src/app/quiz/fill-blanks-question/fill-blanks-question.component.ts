@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Question } from '../../models/question.model.client';
 
 @Component({
   selector: 'app-fill-blanks-question',
@@ -7,8 +8,8 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class FillBlanksQuestionComponent implements OnInit {
 
-  @Input() question;
-  fillBlanksAnswers = [];
+  @Input() question: Question;
+  fillBlanksAnswers: String[];
 
   constructor() { }
 
@@ -17,7 +18,7 @@ export class FillBlanksQuestionComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.question.fillBlanksAnswers = this.fillBlanksAnswers;
+      this.question.fillBlanksAnswers = [];
   }
 
 }

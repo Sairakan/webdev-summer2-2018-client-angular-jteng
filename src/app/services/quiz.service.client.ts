@@ -25,6 +25,14 @@ export class QuizServiceClient {
     fetch(NODE + '/api/quiz/' + quizId)
       .then(response => response.json())
 
+  findSubmissionsForQuiz = (quizId) =>
+    fetch(NODE + '/api/quiz/' + quizId + '/submissions')
+      .then(response => response.json())
+
+  findSubmissionById = (quizId, submissionId) =>
+    fetch(NODE + '/api/quiz/' + quizId + '/submission/' + submissionId)
+      .then(response => response.json())
+
   updateQuiz(quizId, quiz) { }
 
   deleteQuiz(quizId) { }

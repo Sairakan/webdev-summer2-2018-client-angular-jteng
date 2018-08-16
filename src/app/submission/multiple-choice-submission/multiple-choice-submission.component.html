@@ -1,0 +1,9 @@
+<p>
+  {{answer.question.description}}
+</p>
+
+<ul class="list-group">
+  <li *ngFor="let choice of answer.question.choices; let i = index" class="list-group-item">
+    <span [ngClass]="{chosen: answer.multipleChoiceAnswer == i}">{{choice.text}}</span>
+  </li>
+</ul>

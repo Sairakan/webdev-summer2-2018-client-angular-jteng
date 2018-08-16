@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import { Question } from '../../models/question.model.client';
 
 @Component({
   selector: 'app-true-false-question',
@@ -7,7 +8,7 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class TrueFalseQuestionComponent implements OnInit {
 
-  @Input() question;
+  @Input() question: Question;
 
   constructor() { }
 

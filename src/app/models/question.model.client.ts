@@ -7,6 +7,7 @@ export class Question {
         value: String,
         correct: Boolean
     }];
+    blanks: String[];
     questionType: {
         type: String,
         enum: [
@@ -16,4 +17,8 @@ export class Question {
             'CHOICE'
         ]
     };
+    essayAnswer: String;
+    fillBlanksAnswers: String[];
+    trueFalseAnswer: Boolean;
+    multipleChoiceAnswer: Number;
 }

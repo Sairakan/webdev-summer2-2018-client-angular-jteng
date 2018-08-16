@@ -26,13 +26,19 @@ import { SectionServiceClient } from './services/section.service.client';
 import { RegisterComponent } from './register/register.component';
 import { SectionListComponent } from './section-list/section-list.component';
 import { AdminPageComponent } from './admin-page/admin-page.component';
-import { QuizListComponent } from './quiz-list/quiz-list.component';
-import { QuizTakerComponent } from './quiz-taker/quiz-taker.component';
+import { QuizListComponent } from './quiz/quiz-list/quiz-list.component';
+import { QuizTakerComponent } from './quiz/quiz-taker/quiz-taker.component';
 import { QuizServiceClient } from './services/quiz.service.client';
-import { EssayQuestionComponent } from './essay-question/essay-question.component';
-import { FillBlanksQuestionComponent } from './fill-blanks-question/fill-blanks-question.component';
-import { TrueFalseQuestionComponent } from './true-false-question/true-false-question.component';
-import { MultipleChoiceQuestionComponent } from './multiple-choice-question/multiple-choice-question.component';
+import { EssayQuestionComponent } from './quiz/essay-question/essay-question.component';
+import { FillBlanksQuestionComponent } from './quiz/fill-blanks-question/fill-blanks-question.component';
+import { TrueFalseQuestionComponent } from './quiz/true-false-question/true-false-question.component';
+import { MultipleChoiceQuestionComponent } from './quiz/multiple-choice-question/multiple-choice-question.component';
+import { SubmissionViewerComponent } from './submission/submission-viewer/submission-viewer.component';
+import { SubmissionListComponent } from './submission/submission-list/submission-list.component';
+import { EssaySubmissionComponent } from './submission/essay-submission/essay-submission.component';
+import { FillBlanksSubmissionComponent } from './submission/fill-blanks-submission/fill-blanks-submission.component';
+import { MultipleChoiceSubmissionComponent } from './submission/multiple-choice-submission/multiple-choice-submission.component';
+import { TrueFalseSubmissionComponent } from './submission/true-false-submission/true-false-submission.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +60,13 @@ import { MultipleChoiceQuestionComponent } from './multiple-choice-question/mult
     EssayQuestionComponent,
     FillBlanksQuestionComponent,
     TrueFalseQuestionComponent,
-    MultipleChoiceQuestionComponent
+    MultipleChoiceQuestionComponent,
+    SubmissionViewerComponent,
+    SubmissionListComponent,
+    EssaySubmissionComponent,
+    FillBlanksSubmissionComponent,
+    MultipleChoiceSubmissionComponent,
+    TrueFalseSubmissionComponent
   ],
   imports: [
     BrowserModule,

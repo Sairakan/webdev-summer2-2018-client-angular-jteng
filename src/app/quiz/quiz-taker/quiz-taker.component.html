@@ -11,7 +11,7 @@
         {{question.title}}
         <span class="float-right">{{question.points}}</span>
       </h4>
-      <p [innerHTML]="this.format(question.description)"></p>
+
       <div [ngSwitch]="question.questionType">
 
         <app-essay-question [question]="question" *ngSwitchCase="'ESSAY'">

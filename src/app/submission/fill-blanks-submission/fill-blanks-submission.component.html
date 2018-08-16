@@ -1,0 +1,4 @@
+<div *ngFor="let blank of answer.question.blanks; let i = index">
+  <div [innerHTML]='format(description[i], i)'>
+  </div>
+</div>
