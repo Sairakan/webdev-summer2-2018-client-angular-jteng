@@ -1,4 +1,5 @@
 export class Question {
+    _id: String;
     title: String;
     points: Number;
     description: String;

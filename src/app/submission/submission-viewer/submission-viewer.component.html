@@ -4,7 +4,7 @@
   </div>
   <h2>Submission {{submission?._id}} for Quiz {{quiz?.title}} by Student {{submission?.student.username}}</h2>
 
-  <ul class="list-group">
+  <ul class="list-group mb-2">
     <li *ngFor="let answer of submission?.answers" class="list-group-item">
       <h4>
         {{answer.question.title}}
@@ -27,8 +27,4 @@
       </div>
     </li>
   </ul>
-
-  <button class="btn btn-primary float-right my-2 " (click)="submitQuiz(quiz)">
-    Submit
-  </button>
 </div>
