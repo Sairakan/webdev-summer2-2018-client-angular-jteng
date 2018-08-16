@@ -2,7 +2,7 @@
   <div (click)='goBack()' class="mx-2 text-primary">
     <i class="fas fa-2x fa-times"></i>
   </div>
-  <h2>Submission {{submission?._id}} for Quiz {{quiz?.title}}</h2>
+  <h2>Submission {{submission?._id}} for Quiz {{quiz?.title}} by Student {{submission?.student.username}}</h2>
 
   <ul class="list-group">
     <li *ngFor="let answer of submission?.answers" class="list-group-item">
